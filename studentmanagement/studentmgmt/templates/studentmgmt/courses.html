@@ -1,0 +1,25 @@
+{% extends 'studentmgmt/base.html' %}
+{% block content %}
+
+<h3>Courses</h3>
+
+<form method="post" class="mb-3">
+    {% csrf_token %}
+    <div class="input-group">
+        <input name="name" class="form-control" placeholder="Course Name">
+        <button class="btn btn-primary btn-custom">Add Course</button>
+    </div>
+</form>
+
+<ul class="list-group">
+    {% for course in courses %}
+    <li class="list-group-item d-flex justify-content-between">
+        {{ course.name }}
+        <a href="{% url 'delete_course' course.id %}" class="btn btn-danger btn-sm btn-custom">
+            Delete
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
